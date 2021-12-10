@@ -4,20 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.example.springboot.Application;
 import org.example.springboot.domain.posts.Posts;
 import org.example.springboot.domain.posts.PostsRepository;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 //@ContextConfiguration(classes = Application.class)
 @SpringBootTest(classes = Application.class)
 public class PostsRepositoryTest {
@@ -25,7 +23,7 @@ public class PostsRepositoryTest {
     @Autowired
     PostsRepository postsRepository;
 
-    @After
+    @AfterEach
     public void cleanup() {
         postsRepository.deleteAll();
     }
