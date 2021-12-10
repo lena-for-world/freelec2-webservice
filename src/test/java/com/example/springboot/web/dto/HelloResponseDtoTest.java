@@ -1,4 +1,4 @@
-package com.example.springboot.web;
+package com.example.springboot.web.dto;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -16,9 +16,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest
-@ContextConfiguration(classes = Application.class)
 public class HelloResponseDtoTest {
 
     @Autowired private MockMvc mockMvc;
@@ -31,21 +28,6 @@ public class HelloResponseDtoTest {
         HelloResponseDto helloResponseDto = new HelloResponseDto(name, amount);
         Assertions.assertThat(helloResponseDto.getName()).isEqualTo(name);
         Assertions.assertThat(helloResponseDto.getAmount()).isEqualTo(amount);
-    }
-
-    @Test
-    public void helloDto가_리턴된다() throws Exception {
-
-        String name = "이름";
-        int amount = 1000;
-
-        mockMvc.perform(
-            get("/hello/dto")
-            .param("name", name)
-            .param("amount", String.valueOf(amount))
-        ).andExpect(status().isOk())
-            .andExpect(jsonPath("$.name", is(name)))
-            .andExpect(jsonPath("$.amount", is(amount)));
     }
 
 }
